@@ -1,9 +1,9 @@
-const {MongoClient} = require("mongodb");
+const {MongoClient} = require('mongodb');
 
-require("dotenv").config();
+require('dotenv').config();
 
 const client = new MongoClient(process.env.MONGO_URI);
-const dbName = "listaPersonas";
+const dbName = 'store';
 
 const conect = async ()=>{
     try{

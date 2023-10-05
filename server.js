@@ -10,17 +10,30 @@ app.get("/", (req, res)=>{
     //res.send("Mi servidor");
     db.then(async (db)=>{
         console.log("Base de datos conectada");
-        const collection = db.collection("usuarios");
+        const collection = db.collection('restaurant');
         //collection.insertOne({"name": "Alejandro", "rol": "estudiante", "clase": "express js"});
         //collection.updateOne({"name": "Alejandro"}, {$set:{"rol" : "mentor"}});
         //collection.deleteOne({"name": "Alejandro"});
-        //query por separado para separar la logica y no hacer lo que hice en los comentarios de arriba 
-        const query = {"name": "Alejandro"} 
-        // ,  "rol": "estudiante", "clase": "express.js"}
-        const lista = await collection.findOne(query);
+        //query por separado para separar la logica y no hacer lo que 
+        //hice en los comentarios de arriba 
+        //Querys
+        // const query = {"item": "journal"} 
+        // // ,  "rol": "estudiante", "clase": "express.js"}
+        // const lista = await collection.find({
+        //     'status': { $in: ['A', 'D']}
+        // }).toArray();
+        // const limit = await collection.find({
+        //     'status': 'D',
+        //     'qty': {$lt : 80 }
+        // }).toArray();
         //const lista = await collection.find().toArray();
-        console.log(lista);
-        res.send(lista);
+        //console.log(lista);
+
+        //Agregations
+        const areg = await collection.aggregate({
+            $match : {'name': 'Pepperoni'}
+        });
+        res.send(limit);
     });
 });
 
